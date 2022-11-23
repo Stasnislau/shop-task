@@ -1,0 +1,10 @@
+.item-card {
+  width: 386px;
+  height: 444px;
+  background: #ffffff;
+  padding: 16px;
+}
+.item-card-image{
+    width: 354px;
+    height: 330px;
+}

@@ -1,10 +1,29 @@
 .item-card {
-  width: 386px;
-  height: 444px;
+  width: 354px;
+  height: 412px;
   background: #ffffff;
   padding: 16px;
+  border: none;
 }
-.item-card-image{
-    width: 354px;
-    height: 330px;
+.item-card:hover{
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+.item-card-image {
+  width: 322px;
+  height: 330px;
+}
+.item-card-name {
+  margin-top: 24px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  display: flex;
+}
+.item-card-price {
+  text-align: left;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
 }

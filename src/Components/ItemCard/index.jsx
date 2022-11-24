@@ -7,18 +7,19 @@ class ItemCard extends React.Component {
       name: this.props.name,
       price: this.props.price,
       image: this.props.image,
+      currency: this.props.currency,
       chosen: false,
     };
   }
   render() {
     return (
-      <div className="item-card">
+      <button className="item-card">
         <div className="item-card-image">
           <img className="item-card-image" src={this.state.image} alt="Item Image" />
         </div>
         <div className="item-card-name">{this.state.name}</div>
-        <div className="item-card-price">{this.state.price}</div>
-      </div>
+        <div className="item-card-price"><b>{this.state.currency}{this.state.price}</b></div>
+      </button>
     );
   }
 }

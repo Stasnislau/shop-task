@@ -6,24 +6,43 @@ import mockClothes from "../../Components/Logo/mockClothes.jpg";
 const arrayOfCards = [
   {
     name: "Mock",
-    price: 100,
+    price: "50.00",
     image: mockClothes,
   },
   {
     name: "Mock2",
-    price: 200,
+    price: "200",
     image: mockClothes,
   },
+  {
+    name: "Mock3",
+    price: "50.00",
+    image: mockClothes,
+  },
+  {
+    name: "Mock4",
+    price: "200",
+    image: mockClothes,
+  },
+  {
+    name: "Mock5",
+    price: "50.00",
+    image: mockClothes,
+  },
+  {
+    name: "Mock6",
+    price: "200",
+    image: mockClothes,
+  }
 ];
 class Categories extends React.Component {
   render() {
     return (
-      <div className="Categories">
-        <div className="Categories-grid">
-          {arrayOfCards.map((card) => {
-            <ItemCard name={card.name} price={card.price} image={card.image} />;
+      <div className="categories">
+        <div className="categories-grid">
+          {arrayOfCards.map( card => {
+            return <ItemCard name={card.name} price={card.price} image={card.image} currency={"$"} outOfStock={false} />;
           })}
-          {console.log(arrayOfCards)}
         </div>
       </div>
     );

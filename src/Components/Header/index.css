@@ -26,10 +26,6 @@
   width: 100%;
   height: 100%;
 }
-.navigation-element-button:hover {
-  border-bottom: 2px #5ece7b solid;
-  color: #5ece7b;
-}
 .chosen-navigation-button {
   border-bottom: 2px #5ece7b solid;
   color: #5ece7b;

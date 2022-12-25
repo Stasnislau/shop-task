@@ -3,33 +3,8 @@ import "./index.css";
 import Logo from "../Logo/BrandIcon.png";
 import Arrow from "../Logo/Arrow.png";
 import Cart from "../Logo/EmptyCart.png";
+import CurrencyMenu from "./CurrencyButton/index.jsx";
 
-class HeaderElement extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: this.props.name,
-      chosen: this.props.chosen,
-      changeChosen: this.props.changeChosen,
-    };
-  }
-  render() {
-    return (
-      <button
-        className={
-          this.state.chosen
-            ? "navigation-element-button chosen-navigation-button"
-            : "navigation-element-button"
-        }
-        onClick={() => {
-          this.state.changeChosen(this.state.name);
-        }}
-      >
-        {this.state.name}
-      </button>
-    );
-  }
-}
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -50,41 +25,41 @@ class Header extends React.Component {
       ],
     };
   }
-  changeChosen = (name) => {
-    const newElements = [];
-    this.state.elements.map((element, index) => {
+  makeChosen = (name) => {
+    const tempState = [];
+    this.state.elements.forEach((element) => {
       if (element.name === name) {
         if (element.chosen) {
-          newElements.push({
+          tempState.push({
             name: element.name,
             chosen: false,
           });
-        } else {
-          newElements.push({
+        } else
+          tempState.push({
             name: element.name,
             chosen: true,
           });
-        }
       } else {
-        newElements.push({
+        tempState.push({
           name: element.name,
           chosen: false,
         });
       }
     });
-    this.setState({ elements: newElements });
-    console.log(this.state.elements);
+    this.setState({
+      elements: tempState,
+    });
   };
   render() {
     return (
       <div className="header">
         <div className="header-navigation">
-          {this.state.elements.map((name, index) => {
+          {this.state.elements.map((element) => {
             return (
               <HeaderElement
-                name={this.state.elements[index].name}
-                chosen={this.state.elements[index].chosen}
-                changeChosen={this.changeChosen}
+                name={element.name}
+                makeChosen={this.makeChosen}
+                chosen={element.chosen}
               />
             );
           })}
@@ -94,9 +69,12 @@ class Header extends React.Component {
           <img src={Logo} alt="Brand Icon" />
         </div>
         <div className="header-action-bar">
-          <button className="currency-button">
+          <button className="currency-button" onClick={() => {
+            <CurrencyMenu />
+          }}>
             {" "}
-            $ <img src={Arrow} />{" "}
+            $ <img src={Arrow} />
+             
           </button>
           <button className="cart-button">
             {" "}
@@ -104,6 +82,30 @@ class Header extends React.Component {
           </button>
         </div>
       </div>
+    );
+  }
+}
+class HeaderElement extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <button
+        className={
+          this.props.chosen
+            ? "navigation-element-button chosen-navigation-button"
+            : "navigation-element-button not-selected-navigation-button"
+        }
+        onClick={() => {
+          console.log(this.props.chosen);
+          console.log("clicked");
+          this.props.makeChosen(this.props.name);
+        }}
+      >
+        {this.props.name}
+      </button>
     );
   }
 }

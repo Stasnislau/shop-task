@@ -1,12 +1,10 @@
-import Categories from "./Pages/Categories";
 import React from "react";
-import Header from "./Components/Header";
+import Pages from "./Pages";
 
 function App() {
   return (
     <React.Fragment>
-      <Header />
-      <Categories />
+      <Pages />
     </React.Fragment>
   );
 }

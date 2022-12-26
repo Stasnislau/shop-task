@@ -1,33 +1,23 @@
 import React from "react";
 import "./index.css";
 import Logo from "../Logo/BrandIcon.png";
-import Arrow from "../Logo/Arrow.png";
+import Arrow1 from "../Logo/Arrow1.png";
+import Arrow2 from "../Logo/Arrow2.png";
 import Cart from "../Logo/EmptyCart.png";
-import CurrencyMenu from "./CurrencyButton/index.jsx";
+import CurrencyMenu from "./CurrencyMenu/";
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      elements: [
-        {
-          name: "Women",
-          chosen: false,
-        },
-        {
-          name: "Men",
-          chosen: false,
-        },
-        {
-          name: "Kids",
-          chosen: false,
-        },
-      ],
+      isOpen: false,
+      isCartOpen: false,
     };
+    console.log(this.props.categories);
   }
-  makeChosen = (name) => {
+  handleClick = (name) => {
     const tempState = [];
-    this.state.elements.forEach((element) => {
+    this.props.categories.forEach((element) => {
       if (element.name === name) {
         if (element.chosen) {
           tempState.push({
@@ -46,20 +36,18 @@ class Header extends React.Component {
         });
       }
     });
-    this.setState({
-      elements: tempState,
-    });
+    this.props.setCategories(tempState);
   };
   render() {
     return (
       <div className="header">
         <div className="header-navigation">
-          {this.state.elements.map((element) => {
+          {this.props.categories.map((category) => {
             return (
               <HeaderElement
-                name={element.name}
-                makeChosen={this.makeChosen}
-                chosen={element.chosen}
+                name={category.name}
+                handleClick={this.handleClick}
+                chosen={category.chosen}
               />
             );
           })}
@@ -69,16 +57,20 @@ class Header extends React.Component {
           <img src={Logo} alt="Brand Icon" />
         </div>
         <div className="header-action-bar">
-          <button className="currency-button" onClick={() => {
-            <CurrencyMenu />
-          }}>
-            {" "}
-            $ <img src={Arrow} />
-             
+          <button
+            className="currency-button"
+            onClick={() => {
+              this.setState({ isOpen: !this.state.isOpen, isCartOpen: false });
+            }}
+          >
+            {this.state.isOpen ? <CurrencyMenu currencies={this.props.currencies} setCurrencies={this.props.setCurrencies} /> : null}
+            {this.props.currencies.find(
+              (currency) => currency.chosen === true
+            ).name[0]} {this.state.isOpen ? <img src={Arrow2}  alt="arrow" />  : <img src={Arrow1}  alt="arrow" />}
           </button>
           <button className="cart-button">
             {" "}
-            <img src={Cart} />
+            <img src={Cart} alt="cart" />
           </button>
         </div>
       </div>
@@ -86,10 +78,6 @@ class Header extends React.Component {
   }
 }
 class HeaderElement extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <button
@@ -99,9 +87,7 @@ class HeaderElement extends React.Component {
             : "navigation-element-button not-selected-navigation-button"
         }
         onClick={() => {
-          console.log(this.props.chosen);
-          console.log("clicked");
-          this.props.makeChosen(this.props.name);
+          this.props.handleClick(this.props.name);
         }}
       >
         {this.props.name}

@@ -1,0 +1,26 @@
+.categories {
+  margin: 0 100px 100px 100px;
+}
+.categories-grid {
+  top: 40px;
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 40px;
+  row-gap: 100px;
+}
+.categories-header {
+  width: 299px;
+  height: 68px;
+
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 42px;
+
+  align-items: center;
+  display : flex;
+
+  color: #1d1f22;
+}

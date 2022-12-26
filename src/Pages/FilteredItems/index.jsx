@@ -33,19 +33,28 @@ const arrayOfCards = [
     name: "Mock6",
     price: "200",
     image: mockClothes,
-  }
+  },
 ];
-class Categories extends React.Component {
+class FilteredItems extends React.Component {
   render() {
     return (
       <div className="categories">
+        <div className="categories-header">{this.props.name}</div>
         <div className="categories-grid">
-          {arrayOfCards.map( card => {
-            return <ItemCard name={card.name} price={card.price} image={card.image} currency={"$"} outOfStock={false} />;
+          {arrayOfCards.map((card) => {
+            return (
+              <ItemCard
+                name={card.name}
+                price={card.price}
+                image={card.image}
+                currency={this.props.currency}
+                outOfStock={false}
+              />
+            );
           })}
         </div>
       </div>
     );
   }
 }
-export default Categories;
+export default FilteredItems;

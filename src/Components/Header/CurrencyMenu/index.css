@@ -1,0 +1,24 @@
+.currency-menu {
+  position: absolute;
+  width: 114px;
+  height: 121px;
+  top: 65px;
+  display: grid;
+
+  background: #ffffff;
+}
+.currency-menu-line {
+  width: 100%;
+  border: none;
+  height: 40px;
+  background: #ffffff;
+}
+.currency-menu-line:hover {
+  background: #EEEEEE;
+}
+.currency-menu-line-chosen {
+  width: 100%;
+  border: none;
+  height: 40px;
+  background: #EEEEEE;
+}
